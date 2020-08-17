@@ -1,6 +1,6 @@
 # mentorship
 
-simple application to get best pair matches 
+simple application to get best mentoring matches 
 -----------
 
 *install maven*
