@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<h2>Best pair matches</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Division</th>
+        <th>Age</th>
+        <th>Offset</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Division</th>
+        <th>Age</th>
+        <th>Offset</th>
+        <th>Score</th>
+    </tr>
+    <tr th:each="pair: ${pairs.pairs}">
+        <td th:text="${pair.first.name}" />
+        <td th:text="${pair.first.email}" />
+        <td th:text="${pair.first.division}" />
+        <td th:text="${pair.first.age}" />
+        <td th:text="${pair.first.offset}" />
+        <td th:text="${pair.second.name}" />
+        <td th:text="${pair.second.email}" />
+        <td th:text="${pair.second.division}" />
+        <td th:text="${pair.second.age}" />
+        <td th:text="${pair.second.offset}" />
+        <td th:text="${pair.score}"/>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Average score</th>
+    </tr>
+    <tr>
+        <td th:text="${pairs.averageScore}"/>
+    </tr>
+</table>
+</body>
+</html>

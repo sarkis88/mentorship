@@ -1,0 +1,39 @@
+{
+  "pairs": [
+    {
+      "first": {
+        "name": "Jacob Murray",
+        "email": "lstein@me_example.com",
+        "division": "Accounting",
+        "age": 22,
+        "offset": 2
+      },
+      "second": {
+        "name": "Gabrielle Clarkson",
+        "email": "tamas@me_example.com",
+        "division": "Accounting",
+        "age": 25,
+        "offset": 2
+      },
+      "score": 1.00
+    },
+    {
+      "first": {
+        "name": "Nicholas Vance",
+        "email": "saridder@outlook_example.com",
+        "division": "Engineering",
+        "age": 27,
+        "offset": -3
+      },
+      "second": {
+        "name": "Zoe Peters",
+        "email": "gozer@icloud_example.com",
+        "division": "Finance",
+        "age": 30,
+        "offset": 3
+      },
+      "score": 0.30
+    }
+  ],
+  "averageScore": 0.65
+}
