@@ -37,13 +37,13 @@ class EmployeeConverter {
     }
 
     fun toResponseDto(pairs: List<Pair<Employee, Employee>>): MatchedPairResponse {
-        val pairDtos: MutableList<PairInfoDto> = mutableListOf()
-        val averageScore: BigDecimal = pairs.asSequence()
-                .mapTo(pairDtos) { pair ->
+        val pairDtos: List<PairInfoDto> = pairs
+                .map { pair ->
                     PairInfoDto(first = pair.first, second = pair.second, score = pair.getPairScore())
                 }
+        val averageScore: BigDecimal = pairDtos.asSequence()
                 .map { it.score }
-                .reduce { acc, dto -> acc + dto } / pairDtos.size.toBigDecimal()
+                .reduce { acc, next -> acc + next } / pairDtos.size.toBigDecimal()
         return MatchedPairResponse(pairs = pairDtos, averageScore = averageScore)
     }
 }
