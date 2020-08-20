@@ -2,7 +2,7 @@ package com.mentorcliq.mentorship.controller
 
 import com.mentorcliq.mentorship.controller.dto.MatchedPairResponse
 import com.mentorcliq.mentorship.domain.Employee
-import com.mentorcliq.mentorship.service.MentorService
+import com.mentorcliq.mentorship.service.IMentorService
 import com.mentorcliq.mentorship.service.converter.EmployeeConverter
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile
 @Controller
 class CsvController(
         private val employeeConverter: EmployeeConverter,
-        private val mentorService: MentorService
+        private val mentorService: IMentorService
 ) {
 
     @Operation(summary = "Upload CSV file to get best match for mentoring as JSON")

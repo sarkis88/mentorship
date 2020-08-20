@@ -2,20 +2,24 @@
   "pairs": [
     {
       "first": {
-        "name": "Jacob Murray",
-        "email": "lstein@me_example.com",
-        "division": "Accounting",
-        "age": 22,
-        "offset": 2
+        "name": "Zoe Peters",
+        "email": "gozer@icloud_example.com",
+        "division": "Finance",
+        "age": 30,
+        "offset": 3,
+        "location": "Moscow",
+        "sameLocationPreference": "No Preference"
       },
       "second": {
         "name": "Gabrielle Clarkson",
         "email": "tamas@me_example.com",
         "division": "Accounting",
         "age": 25,
-        "offset": 2
+        "offset": 2,
+        "location": "Moscow",
+        "sameLocationPreference": "Yes"
       },
-      "score": 1.00
+      "score": 0.30
     },
     {
       "first": {
@@ -23,17 +27,21 @@
         "email": "saridder@outlook_example.com",
         "division": "Engineering",
         "age": 27,
-        "offset": -3
+        "offset": -3,
+        "location": "Athens",
+        "sameLocationPreference": "No Preference"
       },
       "second": {
-        "name": "Zoe Peters",
-        "email": "gozer@icloud_example.com",
-        "division": "Finance",
-        "age": 30,
-        "offset": 3
+        "name": "Jacob Murray",
+        "email": "lstein@me_example.com",
+        "division": "Accounting",
+        "age": 22,
+        "offset": 2,
+        "location": "New York",
+        "sameLocationPreference": "No"
       },
       "score": 0.30
     }
   ],
-  "averageScore": 0.65
+  "averageScore": 0.30
 }

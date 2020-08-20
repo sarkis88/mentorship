@@ -3,7 +3,8 @@ package com.mentorcliq.mentorship.service.converter
 import com.mentorcliq.mentorship.controller.dto.MatchedPairResponse
 import com.mentorcliq.mentorship.controller.dto.PairInfoDto
 import com.mentorcliq.mentorship.domain.Employee
-import com.mentorcliq.mentorship.domain.getPairScore
+import com.mentorcliq.mentorship.domain.Preference
+import com.mentorcliq.mentorship.strategy.ScoreCalculator
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 import java.math.BigDecimal
@@ -19,9 +20,12 @@ private fun isFirstRow(row: List<String>): Boolean =
                 row[3] == AGE_FIELD && row[4] == OFFSET_FIELD
 
 @Component
-class EmployeeConverter {
-    fun convertToEmployee(name: String, email: String, division: String, age: String, offset: String) =
-            Employee(name = name, email = email, division = division, age = age.toInt(), offset = offset.toInt())
+class EmployeeConverter(private val scoreCalculator: ScoreCalculator) {
+
+    fun convertToEmployee(name: String, email: String, division: String, age: String, offset: String,
+                          location: String, sameLocationPreference: String) =
+            Employee(name = name, email = email, division = division, age = age.toInt(), offset = offset.toInt(),
+                    location = location, sameLocationPreference = Preference.values().first { it.text == sameLocationPreference })
 
     fun convertCsvToEmployees(file: MultipartFile): List<Employee> {
         val employees: MutableList<Employee> = mutableListOf()
@@ -30,7 +34,7 @@ class EmployeeConverter {
             if (isFirstRow(fields)) return@forEach
             employees.add(convertToEmployee(
                     name = fields[0], email = fields[1], division = fields[2],
-                    age = fields[3], offset = fields[4]
+                    age = fields[3], offset = fields[4], location = fields[5], sameLocationPreference = fields[6]
             ))
         }
         return employees
@@ -39,7 +43,7 @@ class EmployeeConverter {
     fun toResponseDto(pairs: List<Pair<Employee, Employee>>): MatchedPairResponse {
         val pairDtos: List<PairInfoDto> = pairs
                 .map { pair ->
-                    PairInfoDto(first = pair.first, second = pair.second, score = pair.getPairScore())
+                    PairInfoDto(first = pair.first, second = pair.second, score = scoreCalculator.calculateScore(pair))
                 }
         val averageScore: BigDecimal = pairDtos.asSequence()
                 .map { it.score }

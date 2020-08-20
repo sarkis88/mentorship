@@ -30,11 +30,15 @@
         <th>Division</th>
         <th>Age</th>
         <th>Offset</th>
+        <th>Location</th>
+        <th>Preference</th>
         <th>Name</th>
         <th>Email</th>
         <th>Division</th>
         <th>Age</th>
         <th>Offset</th>
+        <th>Location</th>
+        <th>Preference</th>
         <th>Score</th>
     </tr>
     <tr th:each="pair: ${pairs.pairs}">
@@ -43,11 +47,15 @@
         <td th:text="${pair.first.division}" />
         <td th:text="${pair.first.age}" />
         <td th:text="${pair.first.offset}" />
+        <td th:text="${pair.first.location}" />
+        <td th:text="${pair.first.sameLocationPreference}" />
         <td th:text="${pair.second.name}" />
         <td th:text="${pair.second.email}" />
         <td th:text="${pair.second.division}" />
         <td th:text="${pair.second.age}" />
         <td th:text="${pair.second.offset}" />
+        <td th:text="${pair.second.location}" />
+        <td th:text="${pair.second.sameLocationPreference}" />
         <td th:text="${pair.score}"/>
     </tr>
 </table>

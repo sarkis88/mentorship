@@ -1,5 +1,5 @@
-Name,Email,Division,Age,Timezone
-Gabrielle Clarkson,tamas@me_example.com,Accounting,25,2
-Zoe Peters,gozer@icloud_example.com,Finance,30,3
-Jacob Murray,lstein@me_example.com,Accounting,22,2
-Nicholas Vance,saridder@outlook_example.com,Engineering,27,-3
+Name,Email,Division,Age,Timezone,Location,Preference
+Gabrielle Clarkson,tamas@me_example.com,Accounting,25,2,Moscow,Yes
+Zoe Peters,gozer@icloud_example.com,Finance,30,3,Moscow,No Preference
+Jacob Murray,lstein@me_example.com,Accounting,22,2,New York,No
+Nicholas Vance,saridder@outlook_example.com,Engineering,27,-3,Athens,No Preference
