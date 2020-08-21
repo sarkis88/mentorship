@@ -13,8 +13,6 @@ import com.nhaarman.mockito_kotlin.spy
 import com.nhaarman.mockito_kotlin.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
@@ -45,7 +43,7 @@ class CsvControllerTest {
     fun `uploadCsvFile successful with JSON response`() {
         mockMvc.perform(multipart("/csv/upload/json").file("file", getFileAsByteArray("file/employee.csv")))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                //.andExpect(content().json(getFileAsString("json/response.json")))
+                .andExpect(content().json(getFileAsString("json/response.json")))
                 .andDo(log())
 
         verify(employeeConverter).convertToEmployee("Gabrielle Clarkson", "tamas@me_example.com",
