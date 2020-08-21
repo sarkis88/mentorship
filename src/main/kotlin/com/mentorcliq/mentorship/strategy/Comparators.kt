@@ -14,10 +14,10 @@ class ListPairsScoreComparator(private val scoreCalculator: ScoreCalculator) : L
     override fun compare(list1: List<Pair<Employee, Employee>>, list2: List<Pair<Employee, Employee>>): Int {
         val score1: BigDecimal = list1.asSequence()
                 .map { pair -> scoreCalculator.calculateScore(pair) }
-                .reduce { accPair, pair -> accPair + pair }
+                .reduce { accPairScore, pairScore -> accPairScore + pairScore }
         val score2: BigDecimal = list2.asSequence()
                 .map { pair -> scoreCalculator.calculateScore(pair) }
-                .reduce { accPair, pair -> accPair + pair }
+                .reduce { accPairScore, pairScore -> accPairScore + pairScore }
         return score1.compareTo(score2)
     }
 
