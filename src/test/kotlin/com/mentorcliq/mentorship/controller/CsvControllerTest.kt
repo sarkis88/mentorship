@@ -7,6 +7,7 @@ import com.mentorcliq.mentorship.getFileAsString
 import com.mentorcliq.mentorship.service.IMentorService
 import com.mentorcliq.mentorship.service.MentorService
 import com.mentorcliq.mentorship.service.converter.EmployeeConverter
+import com.mentorcliq.mentorship.strategy.ListPairsScoreComparator
 import com.mentorcliq.mentorship.strategy.PreferenceScoreCalculator
 import com.mentorcliq.mentorship.strategy.ScoreCalculator
 import com.nhaarman.mockito_kotlin.spy
@@ -27,12 +28,14 @@ class CsvControllerTest {
     private lateinit var scoreCalculator: ScoreCalculator
     private lateinit var employeeConverter: EmployeeConverter
     private lateinit var mentorService: IMentorService
+    private lateinit var comparator: ListPairsScoreComparator
 
     @BeforeEach
     fun setUp() {
         scoreCalculator = spy(PreferenceScoreCalculator())
+        comparator = spy(ListPairsScoreComparator(scoreCalculator))
         employeeConverter = spy(EmployeeConverter(scoreCalculator))
-        mentorService = spy(MentorService(scoreCalculator))
+        mentorService = spy(MentorService(comparator))
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(CsvController(employeeConverter, mentorService))

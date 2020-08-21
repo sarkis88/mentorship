@@ -37,11 +37,11 @@ class PreferenceScoreCalculator : ScoreCalculator {
 
         return if (firstPreference == Preference.NO_PREFERENCE && secondPreference == Preference.NO_PREFERENCE) {
             true
-        } else if (firstPreference == Preference.YES && secondPreference == Preference.YES) {
-            firstLocation == secondLocation
         } else if ((firstPreference == Preference.YES && secondPreference == Preference.NO) ||
                 (firstPreference == Preference.NO && secondPreference == Preference.YES)) {
             false
+        } else if (firstPreference == Preference.YES && secondPreference == Preference.YES) {
+            firstLocation == secondLocation
         } else if (firstPreference == Preference.NO && secondPreference == Preference.NO) {
             firstLocation != secondLocation
         } else if ((firstPreference == Preference.YES && secondPreference == Preference.NO_PREFERENCE) ||

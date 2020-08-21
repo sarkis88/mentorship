@@ -1,9 +1,8 @@
 package com.mentorcliq.mentorship.service
 
 import com.mentorcliq.mentorship.domain.Employee
-import com.mentorcliq.mentorship.strategy.ScoreCalculator
+import com.mentorcliq.mentorship.strategy.ListPairComparator
 import org.springframework.stereotype.Service
-import java.math.BigDecimal
 import java.util.*
 
 interface IMentorService {
@@ -11,22 +10,11 @@ interface IMentorService {
 }
 
 @Service
-class MentorService(private val scoreCalculator: ScoreCalculator) : IMentorService {
-
-    private val descScoreComparator: Comparator<List<Pair<Employee, Employee>>> =
-            Comparator { list1, list2 ->
-                val score2: BigDecimal = list2.asSequence()
-                        .map { scoreCalculator.calculateScore(it) }
-                        .reduce { acc, pair -> acc + pair }
-                val score1: BigDecimal = list1.asSequence()
-                        .map { scoreCalculator.calculateScore(it) }
-                        .reduce { acc, pair -> acc + pair }
-                score2.compareTo(score1)
-            }
+class MentorService(private val listPairsScoreComparator: ListPairComparator) : IMentorService {
 
     override fun getBestPairMatches(employees: List<Employee>): List<Pair<Employee, Employee>> {
         val pairs: List<List<Pair<Employee, Employee>>> = getAllPairs(employees)
-        return Collections.min(pairs, descScoreComparator)
+        return Collections.max(pairs, listPairsScoreComparator)
     }
 
     private fun getAllPairs(employees: List<Employee>): List<List<Pair<Employee, Employee>>> {
