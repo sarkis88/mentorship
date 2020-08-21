@@ -23,7 +23,7 @@ private fun isFirstRow(row: List<String>): Boolean =
 class EmployeeConverter(private val scoreCalculator: ScoreCalculator) {
 
     fun convertToEmployee(name: String, email: String, division: String, age: String, offset: String,
-                          location: String, sameLocationPreference: String) =
+                          location: String, sameLocationPreference: String): Employee =
             Employee(name = name, email = email, division = division, age = age.toInt(), offset = offset.toInt(),
                     location = location, sameLocationPreference = Preference.forValue(sameLocationPreference))
 
