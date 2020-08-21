@@ -13,7 +13,7 @@ interface IMentorService {
 @Service
 class MentorService(private val scoreCalculator: ScoreCalculator) : IMentorService {
 
-    private val comparator: Comparator<List<Pair<Employee, Employee>>> =
+    private val descScoreComparator: Comparator<List<Pair<Employee, Employee>>> =
             Comparator { list1, list2 ->
                 val score2: BigDecimal = list2.asSequence()
                         .map { scoreCalculator.calculateScore(it) }
@@ -26,7 +26,7 @@ class MentorService(private val scoreCalculator: ScoreCalculator) : IMentorServi
 
     override fun getBestPairMatches(employees: List<Employee>): List<Pair<Employee, Employee>> {
         val pairs: List<List<Pair<Employee, Employee>>> = getAllPairs(employees)
-        return Collections.min(pairs, comparator)
+        return Collections.min(pairs, descScoreComparator)
     }
 
     private fun getAllPairs(employees: List<Employee>): List<List<Pair<Employee, Employee>>> {

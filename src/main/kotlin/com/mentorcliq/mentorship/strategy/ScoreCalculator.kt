@@ -14,11 +14,17 @@ interface ScoreCalculator {
 class PreferenceScoreCalculator : ScoreCalculator {
 
     override fun calculateScore(pair: Pair<Employee, Employee>): BigDecimal {
-        val age: BigDecimal = AGE_WEIGHT * (if (abs(pair.first.age - pair.second.age) <= AGE_DIFF) BigDecimal.ONE else BigDecimal.ZERO)
-        val division: BigDecimal = DIVISION_WEIGHT * (if (pair.first.division == pair.second.division) BigDecimal.ONE else BigDecimal.ZERO)
-        val offset: BigDecimal = OFFSET_WEIGHT * (if (pair.first.offset == pair.second.offset) BigDecimal.ONE else BigDecimal.ZERO)
-        val mainScore: BigDecimal = age + division + offset
-        return if (isCompatible(pair)) mainScore else BigDecimal.ZERO
+        return if (!isCompatible(pair))
+            BigDecimal.ZERO
+        else {
+            val age: BigDecimal = AGE_WEIGHT * (if (abs(pair.first.age - pair.second.age) <= AGE_DIFF)
+                BigDecimal.ONE else BigDecimal.ZERO)
+            val division: BigDecimal = DIVISION_WEIGHT * (if (pair.first.division == pair.second.division)
+                BigDecimal.ONE else BigDecimal.ZERO)
+            val offset: BigDecimal = OFFSET_WEIGHT * (if (pair.first.offset == pair.second.offset)
+                BigDecimal.ONE else BigDecimal.ZERO)
+            age + division + offset
+        }
     }
 
 
